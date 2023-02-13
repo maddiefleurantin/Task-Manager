@@ -7,7 +7,7 @@ function love.load()
 	hostIp = governance.getIp()
 
 	server = socket.tcp()
-	server:bind("*",26464)
+	server:bind(hostIp,26464)
 	success, err = server:listen()
 	server:settimeout(0)
 	clients = {}

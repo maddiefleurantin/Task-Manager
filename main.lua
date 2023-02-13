@@ -1,3 +1,3 @@
-io.popen([[powershell love server]])
--- io.popen("love client")
+io.popen("love server")
+io.popen("love client")
 os.exit()

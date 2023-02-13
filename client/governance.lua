@@ -28,8 +28,8 @@ function task:__init (label, numberId, rate)
 	self.rate = rate or 5
 	self.rated = false
 	self.x = 0; self.y = 0; self.width = 0; self.height = 0
-	self.good_r = 20; self.good_g = 255; self.good_b = 255
-	self.bad_r = 255; self.bad_g = 60; self.bad_b = 20
+	self.good_r = .08; self.good_g = 1; self.good_b = 1
+	self.bad_r = 1; self.bad_g = .24; self.bad_b = .08
 	self:setRate(self.rate, "solution")
 end
 function task:setPosition (x,y)
@@ -61,9 +61,9 @@ function task:setRate (rate, type)
 	-- output = string.format("rate: ")
 end
 function task:draw ()
-	love.graphics.setColor(self.red,self.green,self.blue,255)
+	love.graphics.setColor(self.red,self.green,self.blue,1)
 	love.graphics.rectangle("fill", toPixels(self.x), toPixels(self.y), toPixels(self.width), toPixels(self.height))
-	love.graphics.setColor(self.red*0.45, self.green*0.45, self.blue*0.45, 255)
+	love.graphics.setColor(self.red*0.45, self.green*0.45, self.blue*0.45, 1)
 	self.title:set(self.label)
 	-- output = output..string.format("\ntitle pos x: %d, x: %d, w: %d, tw: %d", self.x+(self.width/2)-(self.title:getWidth()/2), self.x, self.width, self.title:getWidth())
 	love.graphics.draw(self.title, toPixels(self.x+(self.width/2))-(self.title:getWidth()/2), toPixels(self.y))
@@ -263,8 +263,8 @@ function button:__init (label, setPositionAndDimensions, action, priority)
 	self.action = action
 	self.setPositionAndDimensions = setPositionAndDimensions
 	self.percent = 0.8
-	self.nred = 20; self.ngreen = 160; self.nblue = 80; self.nalpha = 255
-	self.tred = 10; self.tgreen = 80; self.tblue = 60; self.talpha = 255
+	self.nred = .08; self.ngreen = .63; self.nblue = .31; self.nalpha = 1
+	self.tred = .04; self.tgreen = .31; self.tblue = .24; self.talpha = 1
 	self.sred = self.nred*self.percent; self.sgreen = self.ngreen*self.percent; self.sblue = self.nblue*self.percent; self.salpha = self.nalpha
 	self.red = self.nred; self.green = self.ngreen; self.blue = self.nblue; self.alpha = self.nalpha
 end
@@ -311,7 +311,7 @@ function textBox:__init (label, y_pos, priority)
 	end
 	self.y_pos = y_pos
 	self.percent = 0.8
-	self.nred = 200; self.ngreen = 200; self.nblue = 200; self.nalpha = 255
+	self.nred = .78; self.ngreen = .78; self.nblue = .78; self.nalpha = 1
 	self.sred = self.nred*self.percent; self.sgreen = self.ngreen*self.percent; self.sblue = self.nblue*self.percent; self.salpha = self.nalpha
 	self.red = self.nred; self.green = self.ngreen; self.blue = self.nblue; self.alpha = self.nalpha
 end
@@ -352,10 +352,10 @@ function textBox:draw()
 	self.y = self.y_pos-self.height/2
 	love.graphics.setColor(self.red, self.green, self.blue, self.alpha)
 	love.graphics.rectangle("fill", toPixels(self.x), toPixels(self.y), toPixels(self.width), toPixels(self.height))
-	love.graphics.setColor(200, 200, 200, 255)
+	love.graphics.setColor(.78, .78, .78, 1)
 	love.graphics.setNewFont(toPixels(text_font_size*0.8))
 	love.graphics.print(self.label, toPixels(self.x), toPixels(self.y-text_font_size*0.8))
-	love.graphics.setColor(60, 60, 60, 255)
+	love.graphics.setColor(.24, .24, .24, 1)
 	love.graphics.draw(self.text, toPixels(self.x)+10, toPixels(self.y)+toPixels(self.height)/2-h/2)
 end
 --=========================================================
@@ -371,8 +371,8 @@ function cursorButton:__init (y_pos)
 	self.input = 5
 	self.is_cursor = true
 	self.y_pos = y_pos
-	self.nred = 50; self.ngreen = 60; self.nblue = 80; self.nalpha = 0
-	self.sred = self.nred; self.sgreen = self.ngreen; self.sblue = self.nblue; self.salpha = 20
+	self.nred = .2; self.ngreen = .24; self.nblue = .31; self.nalpha = 0
+	self.sred = self.nred; self.sgreen = self.ngreen; self.sblue = self.nblue; self.salpha = .08
 	self.red = self.nred; self.green = self.ngreen; self.blue = self.nblue; self.alpha = self.nalpha
 end
 function cursorButton:action ()
@@ -402,9 +402,9 @@ function cursorButton:draw ()
 	local star_x = self.x+star_rad+star_margin/2
 	for i=1,5 do
 		if i <= self.input then
-			love.graphics.setColor(200, 200, 200, 255)
+			love.graphics.setColor(.78, .78, .78, 1)
 		else
-			love.graphics.setColor(50, 60, 80, 255)
+			love.graphics.setColor(.2, .24, .31, 1) -- à verifier
 		end
 		love.graphics.circle("fill", toPixels(star_x), toPixels(self.y+self.height/2), toPixels(star_rad), 4)
 		star_x = star_x + star_rad*2 + star_margin

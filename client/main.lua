@@ -113,9 +113,9 @@ function love.mousereleased(x, y, button, isTouch)
 end
 
 function love.draw()
-	love.graphics.setBackgroundColor(35, 36, 45, 255)
+	love.graphics.setBackgroundColor(35/255, 36/255, 45/255, 1)
 	states[state]:draw()
-	love.graphics.setColor(200,200,200, 255)
+	love.graphics.setColor(200/255,200/255,200/255, 1)
 	love.graphics.setNewFont(20)
 	love.graphics.print(output)
 end

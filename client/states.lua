@@ -1,3 +1,5 @@
+local socket = require "socket"
+
 states = {
 	home = {},
 	connect = {},
@@ -104,7 +106,7 @@ function states.run:load ()
 	self.clickableManager = governance.newClickableManager()
 	self.drawableManager = governance.newDrawableManager()
 	self.addTaskButton = governance.newButton(
-	"Nouveau Tâche",
+	"Nouvelle Tâche",
 	function ()
 		local x = 0
 		local y = screenHeight - 75
@@ -132,8 +134,8 @@ function states.run:load ()
 		self.drawableManager:close()
 		love.load()
 	end, 4)
-	self.exitButton:setColor(50,60,80,255)
-	self.exitButton:setTextColor(200,200,200,255)
+	self.exitButton:setColor(.20,.24,.28,1)
+	self.exitButton:setTextColor(.78,.78,.78,1)
 
 	self.clickableManager:addClickable(self.addTaskButton)
 	self.drawableManager:addDrawable(self.addTaskButton)
@@ -218,7 +220,7 @@ function states.run:update (dt)
 end
 function states.run:draw ()
 	self.drawableManager:drawDrawables()
-	love.graphics.setColor(255, 255, 255, 255)
+	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.print(self.dbg, 0, screenHeight - 50)
 end
 --===========================================================
@@ -238,7 +240,7 @@ function states.createNewTask:load ()
 	function ()
 		state = "run"
 	end)
-	self.newTask_button = governance.newButton("nouveau tâche", function()
+	self.newTask_button = governance.newButton("Ajouter", function()
 		local width = box_width
 		local height = box_height_2
 		local x = screenWidth/2 - width/2
@@ -252,8 +254,8 @@ function states.createNewTask:load ()
 		state = "run"
 	end)
 
-	self.cancel_button:setColor(50,60,80)
-	self.cancel_button:setTextColor(180,180,180)
+	self.cancel_button:setColor(.20,.24,.28)
+	self.cancel_button:setTextColor(.71,.71,.71)
 	-- self.newTask_button:setTextColor(180,180,180)
 
 	self.clickableManager:addClickable(self.tname_button)
@@ -354,13 +356,13 @@ function states.editTask:load (label, numberId, rate, rated, rated_task)
 		state = "run"
 	end)
 
-	self.cancel_button:setColor(50,60,80)
-	self.cancel_button:setTextColor(200,200,200)
-	self.submit_rate_button:setTextColor(200,200,200)
-	self.submit_solution_button:setColor(64,120,160)
-	self.submit_solution_button:setTextColor(200,200,200)
-	self.remove_button:setColor(100,50,50)
-	self.remove_button:setTextColor(200,200,200)
+	self.cancel_button:setColor(.20, .24, .28)
+	self.cancel_button:setTextColor(.78, .78, .78)
+	self.submit_rate_button:setTextColor(.78, .78, .78)
+	self.submit_solution_button:setColor(.25, .47, .63)
+	self.submit_solution_button:setTextColor(.78, .78, .78)
+	self.remove_button:setColor(.39, .20, .20)
+	self.remove_button:setTextColor(.78, .78, .78)
 
 	self.clickableManager:addClickable(self.rate_button)
 	self.clickableManager:addClickable(self.cancel_button)
